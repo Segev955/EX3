@@ -1,7 +1,7 @@
 class Node:
     def __init__(self, id, pos, tag=0, w=0.0):
         self.id = id
-        self.pos = pos
+        self.pos = None
         self.tag = tag
         self.w = w
 
@@ -50,7 +50,7 @@ class DiGraph:
             return True
         return False
 
-    def add_node(self, node_id: int, pos: tuple = (0, 0, 0)) -> bool:
+    def add_node(self, node_id: int, pos: tuple = None) -> bool:
         if node_id in self.nodes:
             pass
         else:
@@ -74,8 +74,10 @@ class DiGraph:
         if not self.edges.get(node_id1) and not self.edgesIn.get(node_id2):
             pass
         else:
-            self.edges[node_id1][node_id2] = None
-            self.edgesIn[node_id2][node_id1] = None
+            self.edges[node_id1].pop(node_id2)
+            self.edgesIn[node_id2].pop(node_id1)
+            # self.edges[node_id1][node_id2] = None
+            # self.edgesIn[node_id2][node_id1] = None
             self.mc += 1
             return True
         return False
