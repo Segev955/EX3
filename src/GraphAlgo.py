@@ -2,6 +2,9 @@ import json
 import random
 import sys
 from typing import List
+
+import numpy
+
 from src import GraphInterface
 from src.DiGraph import DiGraph, Node
 import matplotlib.pyplot as plt
@@ -200,34 +203,60 @@ class GraphAlgo(GraphAlgoInterface):
         return l
 
     def centerPoint(self) -> (int, float):
-        alld = sys.float_info.max
+        valtoint = []
         ans = -1
-        for i in self.graph.nodes:
-            dista = 0  # max
-            for j in self.graph.nodes:
-                dis = self.shortest_path(self.graph.nodes[i].id, self.graph.nodes[j].id)
-                tmpdis = dis[0]  # take the distance from "shortest_path"
-                if tmpdis > dista:
-                    dista = tmpdis
-            if (dista < alld):
-                ans = self.graph.nodes[i]
-                alld = dista
-        return alld, ans.id
+        for node in self.graph.nodes.values():  # get the value index
+            valtoint.append(node.id)
+        mat = self.to_matrix(valtoint)
+        N = self.graph.v_size()
+        disans = sys.float_info.max
+        for i in range(N):
+            maxx = 0
+            for j in range(N):
+                dis = mat[i][j]
+                if dis > maxx:
+                    maxx = dis
+            if maxx < disans:
+                disans = maxx
+                ans = self.graph.nodes[valtoint[i]].id
+        if ans == -1:
+            return None, float('inf')
+        return disans, ans
 
-    # def to_matrix(self):
-    #     N = self.graph.v_size()
-    #     inf = sys.float_info.max
-    #     mat = [N][N]
-    #
-    #     # make all inf or 0
-    #     for i in range(N):
-    #         for j in range(N):
-    #             mat[i][j] = inf
-    #             if i == j:
-    #                 mat[i][j] = 0
-    #     for src, i in self.graph.edges.items():
-    #         for dest, w in i.items():
-    #             x = src
+        # alld = sys.float_info.max
+        # ans = -1
+        # for i in self.graph.nodes:
+        #     dista = 0  # max
+        #     for j in self.graph.nodes:
+        #         dis = self.shortest_path(self.graph.nodes[i].id, self.graph.nodes[j].id)
+        #         tmpdis = dis[0]  # take the distance from "shortest_path"
+        #         if tmpdis > dista:
+        #             dista = tmpdis
+        #     if (dista < alld):
+        #         ans = self.graph.nodes[i]
+        #         alld = dista
+        # return alld, ans.id
+
+    def to_matrix(self, valtoint):
+        N = self.graph.v_size()
+        inf = sys.float_info.max
+        mat = [[inf for i in range(N)] for i in range(N)]  # make all inf
+
+        #  make 0
+        for i in range(N):
+            mat[i][i] = 0
+        #  set the init weights
+        for v in self.graph.nodes.keys():
+            for u in self.graph.edges[self.graph.nodes[v].id]:
+                x = valtoint.index(self.graph.nodes[v].id)  # src
+                y = valtoint.index(self.graph.nodes[u].id)  # des
+                mat[x][y] = self.graph.edges[v][u]
+
+        for k in range(N):
+            for i in range(N):
+                for j in range(N):
+                    mat[i][j] = min(mat[i][j], mat[i][k] + mat[k][j])
+        return mat
 
     def plot_graph(self) -> None:
         for v in self.graph.nodes.keys():
