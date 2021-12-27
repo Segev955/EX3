@@ -97,4 +97,4 @@ class TestDiGraph(TestCase):
         g.add_edge(1, 3, 1.9)
         self.assertEqual({1: 1}, g.edges[0])
         g.remove_edge(0, 1)
-        self.assertEqual({1: None}, g.edges[0])
+        self.assertEqual({}, g.edges[0])

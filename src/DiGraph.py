@@ -1,7 +1,10 @@
+from src.GraphInterface import GraphInterface
+
+
 class Node:
     def __init__(self, id, pos, tag=0, w=0.0):
         self.id = id
-        self.pos = None
+        self.pos = pos
         self.tag = tag
         self.w = w
 
@@ -12,7 +15,7 @@ class Node:
         return f"pos={self.pos} id={self.id}"
 
 
-class DiGraph:
+class DiGraph(GraphInterface):
     def __init__(self, mc=0):
         self.nodes = {}
         self.edges = {}
