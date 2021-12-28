@@ -40,6 +40,8 @@ https://en.wikipedia.org/wiki/Travelling_salesman_problem <br>
 running times, including a comparison to the previous java project can be found in the wiki added to this github project.
 https://github.com/Segev955/Ex3/wiki
 ## Running The Program
+![image](https://user-images.githubusercontent.com/93653029/147609275-ff988547-e015-45d8-a675-ce210195e81b.png)
+
 result checks provided these visuals:<br>
 check1
 
