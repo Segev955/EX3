@@ -51,5 +51,5 @@ check1
 
 <br>
 To run the program open the command prompt in the folder that contains it and type "python main.py ../data/G1.json" (or any other file) like in the picture bellow.<br>
-![image](https://user-images.githubusercontent.com/93653029/147608987-9fb655fb-a204-48f7-955e-8d4852796e5c.png)
+![WhatsApp Image 2021-12-28 at 23 35 56](https://user-images.githubusercontent.com/93653029/147609140-8809c7a9-2ea9-4f81-b353-34a3e53ecee8.jpeg)
 
