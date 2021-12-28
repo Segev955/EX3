@@ -40,7 +40,9 @@ running times including a comparison to the java project can be found in the wik
 ## Running The Program
 result checks provided these visuals:
 check1
+
 ![image](https://user-images.githubusercontent.com/93653029/147585208-85c6ea43-5396-4ae1-b4f6-effcc5017b31.png)
+
 
 check2
 ![image](https://user-images.githubusercontent.com/93653029/147585281-27a52a17-b997-4e09-adee-5a0bcf9376a3.png)
