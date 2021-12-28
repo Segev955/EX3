@@ -1,4 +1,4 @@
-# Ex2 Directed Weighted Graphs Algorithms
+# Ex3 Directed Weighted Graphs Algorithms
 python
 
 In this assignment we constructed directed weighted graphs and implemented on them various algorithms including famous algorithm's. The algorithms include the Traveler Salesman Problem,BFS, Dijkstra's algorithm and more.
