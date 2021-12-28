@@ -48,3 +48,8 @@ check1
 
 <br>check2<br>
 ![image](https://user-images.githubusercontent.com/93653029/147585281-27a52a17-b997-4e09-adee-5a0bcf9376a3.png)
+
+<br>
+To run the program open the command prompt in the folder that contains it and type "python main.py ../data/G1.json" (or any other file) like in the picture bellow.<br>
+![image](https://user-images.githubusercontent.com/93653029/147608987-9fb655fb-a204-48f7-955e-8d4852796e5c.png)
+
