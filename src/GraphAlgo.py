@@ -164,8 +164,6 @@ class GraphAlgo(GraphAlgoInterface):
         self.deleteDupes(finalpath)
         return finalpath, finaldis
 
-
-
     # def tsp_rec(self, i: int, node_lst: List[int], ans_lst: List[int], w: float, finaldes, finalpath):
     #     if all(item in ans_lst for item in node_lst):
     #         finaldes = w
@@ -183,49 +181,10 @@ class GraphAlgo(GraphAlgoInterface):
     #
     #     return finalpath, finaldes
 
-        # # ng = DiGraph()
-        # # ng = self.copygraph(node_lst, ng)
-        # tempList2 = []
-        # anslist = []
-        # anslist2 = []
-        # disans = sys.float_info.max
-        # # s = node_lst.pop()
-        # for i in node_lst:
-        #     s = node_lst.index(i)
-        #     node_lst2 = copy.deepcopy(node_lst)
-        #     dis2 = 0
-        #     while len(node_lst2) != 0:
-        #         dis2 = 0
-        #         t = False
-        #         index = -1
-        #         mini = sys.float_info.max
-        #         for i in range(len(node_lst2)):
-        #             l = self.shortest_path(s, node_lst2[i])
-        #             tempList = l[1]
-        #             dis = l[0]
-        #             if dis == float('inf') and len(node_lst2) <=1:
-        #                 break
-        #             if dis < mini:
-        #                 t = True
-        #                 mini = dis
-        #                 tempList2 = tempList
-        #                 index = node_lst2[i]
-        #         if t:
-        #             dis2 += dis
-        #             s = index
-        #             node_lst2.remove(index)
-        #             anslist.extend(tempList2)
-        #         self.deleteDupes(anslist)
-        #     if dis2 < disans:
-        #         disans = dis2
-        #         anslist2 = anslist
-        #
-        # return anslist2
-
     def deleteDupes(self, l: list):
         size = len(l)
         for i in range(len(l)):
-            if i == len(l)-1:
+            if i == len(l) - 1:
                 break
             if l[i] == l[i + 1]:
                 l.pop(i)
@@ -243,6 +202,8 @@ class GraphAlgo(GraphAlgoInterface):
             maxx = 0
             for j in range(N):
                 dis = mat[i][j]
+                if dis == sys.float_info.max:  # if not connected
+                    return None, float('inf')
                 if dis > maxx:
                     maxx = dis
             if maxx < disans:
@@ -251,20 +212,6 @@ class GraphAlgo(GraphAlgoInterface):
         if ans == -1:
             return None, float('inf')
         return disans, ans
-
-        # alld = sys.float_info.max
-        # ans = -1
-        # for i in self.graph.nodes:
-        #     dista = 0  # max
-        #     for j in self.graph.nodes:
-        #         dis = self.shortest_path(self.graph.nodes[i].id, self.graph.nodes[j].id)
-        #         tmpdis = dis[0]  # take the distance from "shortest_path"
-        #         if tmpdis > dista:
-        #             dista = tmpdis
-        #     if (dista < alld):
-        #         ans = self.graph.nodes[i]
-        #         alld = dista
-        # return alld, ans.id
 
     def to_matrix(self, valtoint):
         N = self.graph.v_size()

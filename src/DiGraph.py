@@ -86,4 +86,4 @@ class DiGraph(GraphInterface):
         return False
 
     def __repr__(self) -> str:
-        return f"nodes={self.nodes}\n edges={self.edges}"
+        return f"|V|={self.v_size()}, |E|={self.e_size()}"
