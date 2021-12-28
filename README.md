@@ -17,7 +17,7 @@ The assignment implementation included two main classes:
 <br>*GRAPHALGO -implimentation of different algorithms that can be used on a graph of that sort. the algorithms included an option to extract a representation of a graph from a json file and updating the right fields, plotting the graph - creating a visual representation of the graph , and different mathematical algorithms as those that were mentioned before. furthermore on the algorithms:
 ## Directed Weighted Graph Algorithms
 
-# The algorithms that can be used on a directed weighted graph:<br>
+ The algorithms that can be used on a directed weighted graph:<br>
 
 -**shortestPath**: This function computes the shortest path and returns a list of vertices representing the path and the weight from source to destination - the sum of all the edges in the path.
 To implement this function we used Dijkstra's algorithms to compute all the shortest distances from a source vertex to any vertex on the graph.
