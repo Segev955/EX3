@@ -27,7 +27,8 @@ Then after using Dijkstra's algorithms on a copy of the graph we ran back from t
 we used Floyd-Warshall algorithm to find the center of the graph. <br>
 https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm <br>
 
--**tsp**: Travelling salesman problem- in this function we made a function that computes a route for the travelling salesman. <br>
+-**tsp**: Travelling salesman problem- in this function we made a function that computes a route for the travelling salesman.
+the function cumputes shortest path from each one of the given nodes to another given node. once done, we check for the shortest path we computed. <br>
 https://en.wikipedia.org/wiki/Travelling_salesman_problem <br>
 
 
