@@ -1,4 +1,6 @@
-from src.GraphInterface import GraphInterface
+import ast
+
+from GraphInterface import GraphInterface
 
 
 class Node:
@@ -7,12 +9,14 @@ class Node:
         self.pos = pos
         self.tag = tag
         self.w = w
+        self.edgeout = 0  # for get_all_v
+        self.edgein = 0  # for get_all_v
 
     def getid(self):
         return self.id
 
     def __repr__(self) -> str:
-        return f"pos={self.pos} id={self.id}"
+        return f"{self.id}: |edges_out| {self.edgeout} |edges in| {self.edgein}"
 
 
 class DiGraph(GraphInterface):
@@ -32,6 +36,10 @@ class DiGraph(GraphInterface):
         return sum
 
     def get_all_v(self) -> dict:
+        # dic = {}
+        # for v in self.nodes.keys():
+        # p = self.nodes[v].pos
+        # dic[self.nodes[v].id] = f"{self.nodes[v].id}, |edges_out| {len(self.all_out_edges_of_node(v))}, |edges in|: {len(self.all_in_edges_of_node(v))}"
         return self.nodes
 
     def all_in_edges_of_node(self, id1: int) -> dict:
@@ -50,6 +58,8 @@ class DiGraph(GraphInterface):
             self.edges[id1][id2] = weight
             self.edgesIn[id2][id1] = weight
             self.mc += 1
+            self.nodes[id1].edgeout += 1
+            self.nodes[id2].edgein += 1
             return True
         return False
 
@@ -77,10 +87,10 @@ class DiGraph(GraphInterface):
         if not self.edges.get(node_id1) and not self.edgesIn.get(node_id2):
             pass
         else:
+            self.nodes[node_id1].edgeout -= 1
+            self.nodes[node_id2].edgein -= 1
             self.edges[node_id1].pop(node_id2)
             self.edgesIn[node_id2].pop(node_id1)
-            # self.edges[node_id1][node_id2] = None
-            # self.edgesIn[node_id2][node_id1] = None
             self.mc += 1
             return True
         return False

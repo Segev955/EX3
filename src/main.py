@@ -1,5 +1,8 @@
-from DiGraph import DiGraph
+import sys
+
+
 from GraphAlgo import GraphAlgo
+from DiGraph import DiGraph
 
 
 def check():
@@ -108,4 +111,9 @@ def check3():
 
 
 if __name__ == '__main__':
-    check()
+    # check()
+    graph = GraphAlgo()
+    if not graph.load_from_json(sys.argv[1]):
+        print("File not found")
+    else:
+        graph.plot_graph()

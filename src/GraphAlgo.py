@@ -6,11 +6,11 @@ from typing import List
 
 import numpy
 
-from src import GraphInterface
-from src.DiGraph import DiGraph, Node
+from GraphInterface import GraphInterface
+from DiGraph import DiGraph, Node
 import matplotlib.pyplot as plt
 
-from src.GraphAlgoInterface import GraphAlgoInterface
+from GraphAlgoInterface import GraphAlgoInterface
 
 
 class GraphAlgo(GraphAlgoInterface):
@@ -106,13 +106,13 @@ class GraphAlgo(GraphAlgoInterface):
         path.reverse()  # reverse all (cus we started from the des)
         return distance, path
 
-    # def copygraph(self, node_list: list, ng: DiGraph) -> DiGraph:
-    #     for i in node_list:
-    #         ng.add_node(i)
-    #     for i in node_list:
-    #         for e in self.graph.all_out_edges_of_node(i):
-    #             ng.add_edge(i, e, self.graph.edges[i][e])
-    #     return ng
+    def copygraph(self, node_list: list, ng: DiGraph) -> DiGraph:
+        for i in node_list:
+            ng.add_node(i)
+        for i in node_list:
+            for e in self.graph.all_out_edges_of_node(i):
+                ng.add_edge(i, e, self.graph.edges[i][e])
+        return ng
 
     # def shortest_path_for_tsp(self, id1: int, id2: int, ng: DiGraph) -> (float, list):
     #     path = []
@@ -235,16 +235,19 @@ class GraphAlgo(GraphAlgoInterface):
         return mat
 
     def plot_graph(self) -> None:
-        for v in self.graph.nodes.keys():
-            if not self.graph.nodes[v].pos:
-                self.graph.nodes[v].pos = random.uniform(0, 100), random.uniform(0, 100), random.uniform(0, 100)
-        for v in self.graph.nodes.keys():
-            x, y, z = self.graph.nodes[v].pos
+        ng = copy.deepcopy(self.graph)
+        g = self.graph
+        for v in g.nodes.keys():
+            if not g.nodes[v].pos:
+                g = ng
+                g.nodes[v].pos = random.uniform(0, 100), random.uniform(0, 100), random.uniform(0, 100)
+        for v in g.nodes.keys():
+            x, y, z = g.nodes[v].pos
             plt.plot(x, y, markersize=10, marker='.', color='pink')
 
-            for u in self.graph.edges[self.graph.nodes[v].id]:
-                his_x, his_y, his_z = self.graph.nodes[u].pos
+            for u in g.edges[g.nodes[v].id]:
+                his_x, his_y, his_z = g.nodes[u].pos
                 plt.annotate("", xy=(x, y), xytext=(his_x, his_y), arrowprops=dict(arrowstyle="<-"))
-            plt.text(x, y, str(self.graph.nodes[v].id), color="blue", fontsize=10)
+            plt.text(x, y, str(g.nodes[v].id), color="blue", fontsize=10)
 
         plt.show()
