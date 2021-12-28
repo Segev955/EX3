@@ -40,6 +40,7 @@ https://en.wikipedia.org/wiki/Travelling_salesman_problem <br>
 running times, including a comparison to the previous java project can be found in the wiki added to this github project.
 https://github.com/Segev955/Ex3/wiki
 ## Running The Program
+To run the program open the command prompt in the folder that contains it and type "python main.py ../data/G1.json" (or any other file) like in the picture bellow.<br>
 ![image](https://user-images.githubusercontent.com/93653029/147609275-ff988547-e015-45d8-a675-ce210195e81b.png)
 
 result checks provided these visuals:<br>
@@ -51,7 +52,4 @@ check1
 <br>check2<br>
 ![image](https://user-images.githubusercontent.com/93653029/147585281-27a52a17-b997-4e09-adee-5a0bcf9376a3.png)
 
-<br>
-To run the program open the command prompt in the folder that contains it and type "python main.py ../data/G1.json" (or any other file) like in the picture bellow.<br>
-![WhatsApp Image 2021-12-28 at 23 35 56](https://user-images.githubusercontent.com/93653029/147609140-8809c7a9-2ea9-4f81-b353-34a3e53ecee8.jpeg)
 
