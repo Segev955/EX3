@@ -13,8 +13,8 @@ https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm <br>
 
 # The body of the assignment
 The assignment implementation included two main classes:
-*DIGRAPH-Creating a representation of a directed weighted graph. that was done by creating a class for the graph which included a annnonymus class for  Node.
-*GRAPHALGO -implimentation of different algorithms that can be used on a graph of that sort. the algorithms included an option to extract a representation of a graph from a json file and updating the right fields, plotting the graph - creating a visual representation of the graph , and different mathematical algorithms as those that were mentioned before. furthermore on the algorithms:
+<br>*DIGRAPH-Creating a representation of a directed weighted graph. that was done by creating a class for the graph which included a annnonymus class for  Node.
+<br>*GRAPHALGO -implimentation of different algorithms that can be used on a graph of that sort. the algorithms included an option to extract a representation of a graph from a json file and updating the right fields, plotting the graph - creating a visual representation of the graph , and different mathematical algorithms as those that were mentioned before. furthermore on the algorithms:
 ## Directed Weighted Graph Algorithms
 
  The algorithms that can be used on a directed weighted graph<br>
