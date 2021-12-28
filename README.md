@@ -38,6 +38,7 @@ https://en.wikipedia.org/wiki/Travelling_salesman_problem <br>
 
 ## Algorithms running times
 running times, including a comparison to the previous java project can be found in the wiki added to this github project.
+https://github.com/Segev955/Ex3.wiki.git
 ## Running The Program
 result checks provided these visuals:<br>
 check1
