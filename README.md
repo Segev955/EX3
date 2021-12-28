@@ -32,7 +32,7 @@ https://en.wikipedia.org/wiki/Travelling_salesman_problem <br>
 
 
 ## UML
-![image](https://user-images.githubusercontent.com/93653029/147584398-4c58cbe2-a9db-41d6-9481-10117b6a2de0.png)
+![image](https://user-images.githubusercontent.com/93653029/147587124-d316cfef-7a19-4184-b701-b3e8326a2e7c.png)
 
 
 ## Algorithms running times
