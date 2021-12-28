@@ -1,3 +1,4 @@
+import copy
 import json
 import random
 import sys
@@ -130,32 +131,57 @@ class GraphAlgo(GraphAlgoInterface):
     #     return distance, path
 
     def TSP(self, node_lst: List[int]) -> (List[int], float):
-        self.graph.add_node(-1)
-        dis = sys.float_info.max
-        ans = []
-        for i in node_lst:
-            l = self.tsp_rec(i, node_lst=node_lst, ans_lst=[], w=0.0, finaldes=sys.float_info.max, finalpath=[])
-            if l[1] < dis:
-                dis = l[1]
-                ans = l[0]
-        return ans, dis
+        path = []
+        finalpath = []
+        finaldis = float('inf')
+        for s in node_lst:
+            dis = 0.0
+            newlst = copy.deepcopy(node_lst)
+            newlst.remove(s)
+            path.clear()
+            while newlst:
+                maxdis = float('inf')
+                firstdis = 0
+                temppath = []
+                for node in newlst:
+                    short = self.shortest_path(s, node)
+                    firstdis = short[0]
+                    if firstdis < maxdis:
+                        temppath.clear()
+                        maxdis = firstdis
+                        temppath.extend(short[1])
+                if maxdis == float('inf'):
+                    break
+                dis += maxdis
+                path.extend(temppath)
+                s = temppath.pop()
+                newlst.remove(s)
+                if all(item in path for item in node_lst) and dis < finaldis:
+                    finalpath.clear()
+                    finalpath.extend(path)
+                    finaldis = dis
+                    break
+        self.deleteDupes(finalpath)
+        return finalpath, finaldis
 
-    def tsp_rec(self, i: int, node_lst: List[int], ans_lst: List[int], w: float, finaldes, finalpath):
-        if all(item in ans_lst for item in node_lst):
-            finaldes = w
-            finalpath.extend(ans_lst)
-            ans_lst.clear()
-            w = 0.0
-            return finalpath, finaldes
-        for n in self.graph.all_out_edges_of_node(i):
 
-            if n in ans_lst:
-                continue
-            w += self.graph.edges[i][n]
-            ans_lst.append(n)
-            self.tsp_rec(n, node_lst, ans_lst, w, finaldes, finalpath)
 
-        return finalpath, finaldes
+    # def tsp_rec(self, i: int, node_lst: List[int], ans_lst: List[int], w: float, finaldes, finalpath):
+    #     if all(item in ans_lst for item in node_lst):
+    #         finaldes = w
+    #         finalpath.extend(ans_lst)
+    #         ans_lst.clear()
+    #         w = 0.0
+    #         return finalpath, finaldes
+    #     for n in self.graph.all_out_edges_of_node(i):
+    #
+    #         if n in ans_lst:
+    #             continue
+    #         w += self.graph.edges[i][n]
+    #         ans_lst.append(n)
+    #         self.tsp_rec(n, node_lst, ans_lst, w, finaldes, finalpath)
+    #
+    #     return finalpath, finaldes
 
         # # ng = DiGraph()
         # # ng = self.copygraph(node_lst, ng)
@@ -197,7 +223,10 @@ class GraphAlgo(GraphAlgoInterface):
         # return anslist2
 
     def deleteDupes(self, l: list):
-        for i in range(len(l) - 2):
+        size = len(l)
+        for i in range(len(l)):
+            if i == len(l)-1:
+                break
             if l[i] == l[i + 1]:
                 l.pop(i)
         return l

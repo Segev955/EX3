@@ -79,7 +79,7 @@ def check2():
     print(dist, path)
     dist, path = g_algo.shortest_path(2, 20)
     print(dist, path)
-    # print(g_algo.TSP([1, 2, 3]))
+    print(g_algo.TSP([1, 2, 3]))
     g_algo.plot_graph()
 
 
@@ -105,4 +105,4 @@ def check3():
 
 
 if __name__ == '__main__':
-    check1()
+    check2()
